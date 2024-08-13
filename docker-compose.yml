@@ -1,0 +1,11 @@
+version: '3'
+services:
+  follow_your_name_images:
+    image: final-ecommerce
+    container_name: final-ecommerce
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
