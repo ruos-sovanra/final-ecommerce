@@ -69,6 +69,8 @@ export default function NavbarComponent() {
         { name: 'Sign out', href: '#', onClick: confirmLogout },
     ]
 
+    console.log(profile)
+
 
     return (
         <Disclosure as="header" className="bg-white shadow">
@@ -118,12 +120,28 @@ export default function NavbarComponent() {
                                 </Disclosure.Button>
                             </div>
                             <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
+                                {profile && profile.roles && profile.roles.includes("ADMIN") && (
+                                    <button
+                                        type="button"
+                                        className="flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    >
+                                        <Link href={"/dashboard"} title="Dashboard" className="flex items-center">
+                                            <span className="sr-only">Dashboard</span>
+                                            <svg className="h-6 w-6" aria-hidden="true" fill="currentColor"
+                                                 viewBox="0 0 20 20">
+                                                <path d="M3 3h4v4H3V3zm0 6h4v8H3V9zm6-6h8v8H9V3zm0 10h8v6H9v-6z"/>
+                                            </svg>
+                                            Dashboard
+                                        </Link>
+                                    </button>
+                                )}
+
                                 <button
                                     type="button"
                                     className="flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
                                     <Link href={"/cart"}>
-                                        <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+                                        <ShoppingCartIcon className="h-6 w-6" aria-hidden="true"/>
                                     </Link>
                                 </button>
 
@@ -134,7 +152,8 @@ export default function NavbarComponent() {
                                         <Menu.Button
                                             className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                             <span className="sr-only">Open user menu</span>
-                                            <img className="h-8 w-8 rounded-full" src={profile.profileImage} alt={profile.userName}/>
+                                            <img className="h-8 w-8 rounded-full" src={profile.profileImage}
+                                                 alt={profile.userName}/>
                                         </Menu.Button>
                                     </div> : <div>
                                         <button

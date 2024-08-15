@@ -8,7 +8,6 @@ type Profile = {
     email: string;
     profileImage: string;
 
-
 }
 
 
