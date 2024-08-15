@@ -23,7 +23,7 @@ const baseQueryWithReAuth = async (args: any, api: any, extraOptions: any) => {
     // check result of each query. if it's a 401, we'll try to re-authenticate
     let result = await baseQuery(args, api, extraOptions);
     if (result.error?.status === 401) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_LOCAL_URL}/api/refresh`, {
+        const res = await fetch("http://159.223.38.211:3000/api/refresh", {
             method: "POST",
             credentials: "include",
         });
@@ -33,7 +33,7 @@ const baseQueryWithReAuth = async (args: any, api: any, extraOptions: any) => {
             // re-run the query with the new token
             result = await baseQuery(args, api, extraOptions);
         } else {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_LOCAL_URL}/api/logout`, {
+            const res = await fetch("http://159.223.38.211:3000/api/logout", {
                 method: "POST",
                 credentials: "include",
             });
