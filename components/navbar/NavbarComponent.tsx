@@ -1,8 +1,14 @@
 'use client'
-import { Fragment } from 'react'
+import {Fragment, useCallback, useEffect} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {Bars3Icon, BellIcon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon} from "@heroicons/react/16/solid";
 import Link from "next/link";
+import {useGetUserQuery} from "@/redux/service/user";
+import {useAppDispatch, useAppSelector} from "@/redux/hook";
+import {selectProfile, setProfile} from "@/redux/feature/profile/userSlice";
+import {useRouter} from "next/dist/client/components/navigation";
+import logo from "@/public/logo.svg";
+import Image from "next/image";
 
 
 const user = {
@@ -18,17 +24,52 @@ const navigation = [
     { name: 'About', href: '/about', current: false },
 
 ]
-const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
-]
+
 
 function classNames(...classes:string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function NavbarComponent() {
+
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+
+    const {data} = useGetUserQuery();
+
+    useEffect(() => {
+        if(data){
+            dispatch(setProfile(data.payload))
+        }
+    }, [data]);
+
+    const profile = useAppSelector(selectProfile);
+
+    const confirmLogout = useCallback(async () => {
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_LOCAL_URL}/api/logout`, {
+                method: "POST",
+                credentials: "include",
+            });
+            if (res.ok) {
+                router.push("/");
+            } else {
+                console.error("Failed to logout, status code:", res.status);
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    }, [router]);
+
+
+
+    const userNavigation = [
+        { name: 'Your Profile', href: '/profile' },
+        { name: 'Settings', href: '/settings' },
+        { name: 'Sign out', href: '#', onClick: confirmLogout },
+    ]
+
+
     return (
         <Disclosure as="header" className="bg-white shadow">
             {({ open }) => (
@@ -37,9 +78,11 @@ export default function NavbarComponent() {
                         <div className="relative flex h-16 justify-between">
                             <div className="relative z-10 flex px-2 lg:px-0">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="block h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                    <Image
+                                        width={300}
+                                        height={300}
+                                        className="block h-24 w-auto"
+                                        src={logo}
                                         alt="Your Company"
                                     />
                                 </div>
@@ -86,12 +129,23 @@ export default function NavbarComponent() {
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-4 flex-shrink-0">
-                                    <div>
-                                        <Menu.Button className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+
+                                    {profile != null ? <div>
+                                        <Menu.Button
+                                            className="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                             <span className="sr-only">Open user menu</span>
-                                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                            <img className="h-8 w-8 rounded-full" src={profile.profileImage} alt={profile.userName}/>
                                         </Menu.Button>
-                                    </div>
+                                    </div> : <div>
+                                        <button
+                                            className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                            onClick={() => router.push("/login")}
+                                        >
+                                            Login
+                                        </button>
+                                    </div>}
+
+
                                     <Transition
                                         as={Fragment}
                                         enter="transition ease-out duration-100"
@@ -101,12 +155,14 @@ export default function NavbarComponent() {
                                         leaveFrom="transform opacity-100 scale-100"
                                         leaveTo="transform opacity-0 scale-95"
                                     >
-                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <Menu.Items
+                                            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
-                                                    {({ active }) => (
+                                                    {({active}) => (
                                                         <a
                                                             href={item.href}
+                                                            onClick={item.onClick ? item.onClick : undefined}
                                                             className={classNames(
                                                                 active ? 'bg-gray-100' : '',
                                                                 'block px-4 py-2 text-sm text-gray-700'

@@ -49,7 +49,7 @@ function classNames(...classes:string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function ProfilePage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [orders, setOrders] = useState<OrderResult[]>([])
 
@@ -78,30 +78,6 @@ export default function Example() {
 
     return (
         <>
-            <header className="absolute inset-x-0 top-0 z-50 flex h-16 border-b border-gray-900/10">
-                <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                    <div className="fixed inset-0 z-50" />
-                    <Dialog.Panel className="fixed inset-y-0 left-0 z-50 w-full overflow-y-auto bg-white px-4 pb-6 sm:max-w-sm sm:px-6 sm:ring-1 sm:ring-gray-900/10">
-                        <div className="-ml-0.5 flex h-16 items-center gap-x-6">
-                            <button type="button" className="-m-2.5 p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
-                                <span className="sr-only">Close menu</span>
-                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                            </button>
-                            <div className="-ml-0.5">
-                                <a href="#" className="-m-1.5 block p-1.5">
-                                    <span className="sr-only">Your Company</span>
-                                    <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                        alt=""
-                                    />
-                                </a>
-                            </div>
-                        </div>
-                    </Dialog.Panel>
-                </Dialog>
-            </header>
-
             <div className="container mx-auto  lg:flex lg:gap-x-16 lg:px-8">
                 <aside className="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20">
                     <nav className="flex-none px-4 sm:px-6 lg:px-0">
@@ -267,55 +243,55 @@ export default function Example() {
                                                         {/* Products */}
                                                         <h4 className="sr-only">Items</h4>
                                                         <ul role="list" className="divide-y divide-gray-200">
-                                                                <li key={order.product.id} className="p-4 sm:p-6">
-                                                                    <div className="flex items-center sm:items-start">
+                                                            <li key={order.product.id} className="p-4 sm:p-6">
+                                                                <div className="flex items-center sm:items-start">
+                                                                    <div
+                                                                        className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200 sm:h-40 sm:w-40">
+                                                                        <img
+                                                                            src={order.product.image}
+                                                                            alt={order.product.name}
+                                                                            className="h-full w-full object-cover object-center"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="ml-6 flex-1 text-sm">
                                                                         <div
-                                                                            className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200 sm:h-40 sm:w-40">
-                                                                            <img
-                                                                                src={order.product.image}
-                                                                                alt={order.product.name}
-                                                                                className="h-full w-full object-cover object-center"
-                                                                            />
+                                                                            className="font-medium text-gray-900 sm:flex sm:justify-between">
+                                                                            <h5>{order.product.name}</h5>
+                                                                            <p className="mt-2 sm:mt-0">{order.product.price}</p>
                                                                         </div>
-                                                                        <div className="ml-6 flex-1 text-sm">
-                                                                            <div
-                                                                                className="font-medium text-gray-900 sm:flex sm:justify-between">
-                                                                                <h5>{order.product.name}</h5>
-                                                                                <p className="mt-2 sm:mt-0">{order.product.price}</p>
-                                                                            </div>
-                                                                            <p className="hidden text-gray-500 sm:mt-2 sm:block">{order.product.description}</p>
-                                                                        </div>
+                                                                        <p className="hidden text-gray-500 sm:mt-2 sm:block">{order.product.description}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="mt-6 sm:flex sm:justify-between">
+                                                                    <div className="flex items-center">
+                                                                        <CheckCircleIcon
+                                                                            className="h-5 w-5 text-green-500"
+                                                                            aria-hidden="true"/>
+                                                                        <p className="ml-2 text-sm font-medium text-gray-500">
+                                                                            Delivered on {format(randomDate, 'dd-MM-yyyy')}
+                                                                        </p>
                                                                     </div>
 
-                                                                    <div className="mt-6 sm:flex sm:justify-between">
-                                                                        <div className="flex items-center">
-                                                                            <CheckCircleIcon
-                                                                                className="h-5 w-5 text-green-500"
-                                                                                aria-hidden="true"/>
-                                                                            <p className="ml-2 text-sm font-medium text-gray-500">
-                                                                                Delivered on {format(randomDate, 'dd-MM-yyyy')}
-                                                                            </p>
+                                                                    <div
+                                                                        className="mt-6 flex items-center space-x-4 divide-x divide-gray-200 border-t border-gray-200 pt-4 text-sm font-medium sm:ml-4 sm:mt-0 sm:border-none sm:pt-0">
+                                                                        <div className="flex flex-1 justify-center">
+                                                                            <a
+                                                                                className="whitespace-nowrap text-indigo-600 hover:text-indigo-500"
+                                                                            >
+                                                                                View product
+                                                                            </a>
                                                                         </div>
-
                                                                         <div
-                                                                            className="mt-6 flex items-center space-x-4 divide-x divide-gray-200 border-t border-gray-200 pt-4 text-sm font-medium sm:ml-4 sm:mt-0 sm:border-none sm:pt-0">
-                                                                            <div className="flex flex-1 justify-center">
-                                                                                <a
-                                                                                    className="whitespace-nowrap text-indigo-600 hover:text-indigo-500"
-                                                                                >
-                                                                                    View product
-                                                                                </a>
-                                                                            </div>
-                                                                            <div
-                                                                                className="flex flex-1 justify-center pl-4">
-                                                                                <a href="#"
-                                                                                   className="whitespace-nowrap text-indigo-600 hover:text-indigo-500">
-                                                                                    Buy again
-                                                                                </a>
-                                                                            </div>
+                                                                            className="flex flex-1 justify-center pl-4">
+                                                                            <a href="#"
+                                                                               className="whitespace-nowrap text-indigo-600 hover:text-indigo-500">
+                                                                                Buy again
+                                                                            </a>
                                                                         </div>
                                                                     </div>
-                                                                </li>
+                                                                </div>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 ))}

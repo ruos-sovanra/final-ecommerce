@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.1.5",
     "@reduxjs/toolkit": "^2.2.7",
     "cookie": "^0.6.0",
+    "date-fns": "^3.6.0",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",
     "next": "14.2.5",

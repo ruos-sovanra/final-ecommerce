@@ -3,6 +3,10 @@ import {Disclosure, Tab} from "@headlessui/react";
 import {StarIcon} from "@heroicons/react/20/solid";
 import {HeartIcon, MinusIcon, PlusIcon} from "@heroicons/react/24/outline";
 import {useEffect, useState} from "react";
+import {useCreateOrderMutation} from "@/redux/service/order";
+import {useAppSelector} from "@/redux/hook";
+import {selectProfile} from "@/redux/feature/profile/userSlice";
+import {useRouter} from "next/dist/client/components/navigation";
 
 type Product = {
     id: number;
@@ -24,6 +28,12 @@ const ProductDetail = ({uuid}: Props) => {
 
     const [products, setProducts] = useState<Product | null >(null);
 
+    const [createOrder] = useCreateOrderMutation();
+
+    const profile = useAppSelector(selectProfile)
+
+    const router = useRouter()
+
     const fetchProducts = async () => {
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${uuid}`);
@@ -39,7 +49,19 @@ const ProductDetail = ({uuid}: Props) => {
         fetchProducts();
     }, []);
 
-    console.log(products);
+    const handleAddToCart = async () => {
+        if(profile != null){
+            try {
+                const response = await createOrder({uuid: products?.uuid ?? ''});
+            }catch (error) {
+                console.error(error);
+            }
+        }else{
+            router.push('/login')
+        }
+    }
+
+
 
     return (
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -96,12 +118,12 @@ const ProductDetail = ({uuid}: Props) => {
                         </div>
                     </div>
 
-                    <form className="mt-6">
+                    <div className="mt-6">
 
                         <div className="sm:flex-col1 mt-10 flex">
                             <button
-                                type="submit"
                                 className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
+                                onClick={handleAddToCart}
                             >
                                 Add to bag
                             </button>
@@ -114,7 +136,7 @@ const ProductDetail = ({uuid}: Props) => {
                                 <span className="sr-only">Add to favorites</span>
                             </button>
                         </div>
-                    </form>
+                    </div>
 
                     {/*<section aria-labelledby="details-heading" className="mt-12">*/}
                     {/*    <h2 id="details-heading" className="sr-only">*/}

@@ -1,5 +1,6 @@
 'use client';
 import {useEffect, useState} from "react";
+import {useRouter} from "next/dist/client/components/navigation";
 
 type Product = {
     id: number;
@@ -31,6 +32,8 @@ const CollectionComponent = () => {
         fetchProducts();
     }, []);
 
+    const router = useRouter()
+
     return (
         <section
             aria-labelledby="collection-heading"
@@ -54,7 +57,8 @@ const CollectionComponent = () => {
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                className="h-full w-full object-cover object-center"
+                                className="h-full w-full object-cover object-center cursor-pointer"
+                                onClick={()=>router.push(`/product/${product.uuid}`)}
                             />
                         </div>
                         <h3 className="mt-4 text-base font-semibold text-gray-900">{product.name}</h3>

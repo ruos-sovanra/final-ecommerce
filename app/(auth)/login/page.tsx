@@ -2,6 +2,8 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useRouter } from 'next/navigation';
 import * as Yup from 'yup';
+import logo from "@/public/logo.svg"
+import Image from "next/image";
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
@@ -53,22 +55,10 @@ const LoginPage = () => {
                 <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
                     <div className="mx-auto w-full max-w-sm lg:w-96">
                         <div>
-                            <img
-                                className="h-10 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                alt="Your Company"
-                            />
                             <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
                                 Sign in to your account
                             </h2>
-                            <p className="mt-2 text-sm leading-6 text-gray-500">
-                                Not a member?{' '}
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Start a 14 day free trial
-                                </a>
-                            </p>
                         </div>
-
                         <div className="mt-10">
                             <Formik
                                 initialValues={initialValues}
