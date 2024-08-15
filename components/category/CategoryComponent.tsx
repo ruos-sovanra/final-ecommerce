@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from "next/navigation";
 import {useEffect, useState} from "react";
 
 type Category = {
@@ -27,13 +28,15 @@ const CategoryComponent = () => {
         fetchProducts();
     }, []);
 
+    const router = useRouter();
+
     return (
         <section aria-labelledby="category-heading" className="pt-24 sm:pt-32 xl:mx-auto xl:max-w-7xl xl:px-8">
             <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
                 <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
                     Shop by Category
                 </h2>
-                <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+                <a href="/shop" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
                     Browse all categories
                     <span aria-hidden="true"> &rarr;</span>
                 </a>
@@ -50,7 +53,7 @@ const CategoryComponent = () => {
                                     className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
                                 >
                       <span aria-hidden="true" className="absolute inset-0">
-                        <img src={category.image} alt="" className="h-full w-full object-cover object-center"/>
+                        <img src={category.image} alt="" className="h-full w-full object-cover object-center cursor-pointer" onClick={()=>router.push(`/shop/${category.uuid}`)}/>
                       </span>
                                     <span
                                         aria-hidden="true"

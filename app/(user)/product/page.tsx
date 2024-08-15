@@ -21,7 +21,7 @@ const ProductPage = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products?page=0&size=9`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products?page=0&size=30`);
             const data = await res.json();
             setProducts(data.results);
         } catch (error) {
