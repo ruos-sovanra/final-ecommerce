@@ -7,6 +7,7 @@ type Profile = {
     userName: string;
     email: string;
     profileImage: string;
+    roles: string[];
 
 }
 
