@@ -47,7 +47,7 @@ const ShopPage = () => {
                                 <img
                                     src={category.image}
                                     alt={category.name}
-                                    className="h-full w-full object-cover object-center cursor-pointer"
+                                    className="h-full w-full md:w-[500px] md:h-[500px] object-center cursor-pointer"
                                     onClick={() => router.push(`/shop/${category.uuid}`)}
                                 />
                             </div>

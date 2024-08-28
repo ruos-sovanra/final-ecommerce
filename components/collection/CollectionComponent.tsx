@@ -37,7 +37,7 @@ const CollectionComponent = () => {
     return (
         <section
             aria-labelledby="collection-heading"
-            className="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8"
+            className="mx-auto max-w-xl px-4 py-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8"
         >
             <h2 id="collection-heading" className="text-2xl font-bold tracking-tight text-gray-900">
                 Shop by Collection

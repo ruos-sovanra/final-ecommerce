@@ -37,8 +37,13 @@ const ProductPage = () => {
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
+                <p className="mt-4 text-base text-gray-500">
+                    Each season, we collaborate with world-class designers to create a collection inspired by the
+                    natural world.
+                </p>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-                    {products.map((product,index) => (
+                    {products.map((product, index) => (
                         <a key={product.id} className="group text-sm">
                             <div
                                 className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">

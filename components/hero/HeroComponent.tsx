@@ -6,7 +6,7 @@ export default function HeroComponent() {
                     <div className="mx-auto max-w-2xl lg:mx-0">
                         <div className="hidden sm:mt-32 sm:flex lg:mt-16">
                             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                                Anim aute id magna aliqua ad ad non deserunt sunt.{' '}
+                                The most reliable online shop platform.{' '}
                                 <a href="#" className="whitespace-nowrap font-semibold text-indigo-600">
                                     <span className="absolute inset-0" aria-hidden="true" />
                                     Read more <span aria-hidden="true">&rarr;</span>
@@ -14,11 +14,13 @@ export default function HeroComponent() {
                             </div>
                         </div>
                         <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
-                            Data to enrich your online business
+                            One and only <span className="text-indigo-600">online shop</span> platform.
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                            fugiat veniam occaecat fugiat aliqua.
+                            We provide the best online shop platform for you to start your online business. We provide the
+                            best online shop platform for you to start your online business. We provide the best online
+                            shop platform for you to start your online business. We provide the best online shop platform
+                            for you to start your online business.
                         </p>
                         <div className="mt-10 flex items-center gap-x-6">
                             <a

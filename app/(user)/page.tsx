@@ -15,7 +15,6 @@ export default function Example() {
             <CategoryComponent />
             <FeaturedComponent />
             <CollectionComponent />
-            <ContactComponent />
         </main>
     )
 }
