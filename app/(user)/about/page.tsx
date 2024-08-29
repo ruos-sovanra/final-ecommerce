@@ -36,9 +36,9 @@ const timeline = [
 
 const people = [
     {
-        name: 'Ouch Nisa',
+        name: '',
         role: 'Team Member',
-        imageUrl:team,
+        imageUrl:"",
         twitterUrl: '#',
         linkedinUrl: '#',
     },
@@ -275,7 +275,6 @@ export default function AboutPage() {
                         ))}
                     </ul>
                 </div>
-
 
             </main>
 
