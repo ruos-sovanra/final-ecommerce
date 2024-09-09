@@ -1,13 +1,15 @@
 'use client'
 import { useState } from 'react'
-import team from "@/public/team.jpg"
+import team from "@/public/team3.jpg"
+import team2 from "@/public/team1.jpg"
+import team3 from "@/public/team2.jpg"
 import Image from "next/image";
 
 const timeline = [
     {
         name: 'Founded company',
         description:
-            'Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.',
+            'Created the company in order to build the future of ecommerce. Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.',
         date: 'Aug 2021',
         dateTime: '2021-08',
     },
@@ -36,12 +38,27 @@ const timeline = [
 
 const people = [
     {
-        name: '',
+        name: 'Ouch Nisa',
         role: 'Team Member',
-        imageUrl:"",
+        imageUrl: team,
         twitterUrl: '#',
         linkedinUrl: '#',
     },
+    {
+        name: 'Lim Sokmouyheang',
+        role: 'Team Member',
+        imageUrl: team3,
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+    {
+        name: 'Kuy Seyla',
+        role: 'Team Member',
+        imageUrl: team2,
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+
     // More people...
 ]
 
