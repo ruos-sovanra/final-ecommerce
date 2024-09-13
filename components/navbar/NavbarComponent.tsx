@@ -7,7 +7,7 @@ import {useGetUserQuery} from "@/redux/service/user";
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
 import {selectProfile, setProfile} from "@/redux/feature/profile/userSlice";
 import {useRouter} from "next/dist/client/components/navigation";
-import logo from "@/public/logo.svg";
+import logo from "@/public/Psa-Khmer.png";
 import Image from "next/image";
 
 

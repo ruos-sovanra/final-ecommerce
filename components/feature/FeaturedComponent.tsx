@@ -17,14 +17,10 @@ const FeaturedComponent = () => {
                         <h2 id="social-impact-heading"
                             className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             <span className="block sm:inline">Level up</span>
-                            <span className="block sm:inline">your desk</span>
+                            <span className="block sm:inline"> your Shopping </span>
                         </h2>
                         <p className="mt-3 text-xl text-white">
-                            Make your desk beautiful and organized. Post a picture to social media and watch it get more
-                            likes
-                            than life-changing announcements. Reflect on the shallow nature of existence. At least you
-                            have a
-                            really nice desk setup.
+                           We provide the best shopping experience for your workspace needs. you can find the best quality products at the best price.
                         </p>
                         <a
                             href="/shop"
